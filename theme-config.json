@@ -1,7 +1,6 @@
 {
     "run": "all",
     "demos": [
-        "kayros"
-    ]
+        "kayros"    ]
 }
  

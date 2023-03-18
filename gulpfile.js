@@ -23,6 +23,16 @@ const isSourceMap = true;
 
 const sourceMapWrite = (isSourceMap) ? "./" : false;
 
+const tailwindcss = require("tailwindcss");
+const postcss = require("gulp-postcss");
+
+gulp.task("css", function () {
+  return gulp
+    .src("dist/kayros/assets/style.css")
+    .pipe(postcss([tailwindcss("/tailwind.config.js")]))
+    .pipe(gulp.dest("/dist/kayros"));
+});
+
 const paths = {
     base: {
         base: {

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @@include("partials/head-css.html")
+    <title>Dashboard Login 1.0 | Kayros</title>
+</head>
+<body>
+    <div id="main" class="container-fluid d-flex flex-column flex-lg-row vh-100">
+        <div class="bg-white d-flex flex-column justify-content-center align-items-center w-100 w-lg-50 gap-3 p-4 p-lg-6">
+          <form class="w-100 w-lg-75 p-4 p-lg-6 flex flex-column">
+            <img class="w-50 w-lg-75 py-4 bg-cover" src="assets/images/kayros_logo.static.png" alt="logo">
+            <h2 class="text-center text-lg-start fs-3 fs-lg-4 fw-bold text-primary pb-3">Bienvenido de nuevo</h2>
+            <span class="text-muted mb-6 fs-lg-2">Inicia sesión con tu correo @kayros.in</span>
+      
+            <label class="fw-bold mb-2 mt-lg-4" for="email">Email:</label>
+            <input class="form-control mb-4 rounded-md" type="text" id="email" name="email" placeholder="Ingresa tu email" required>
+            <span class="text-danger d-none mb-3 fs-6 pl-3">El correo solo debe ser @kayros.in</span>
+      
+            <label class="fw-bold mb-2" for="password">Contraseña:</label>
+            <input class="form-control mb-4 rounded-md" type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+      
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <label class="d-flex align-items-center mb-0">
+                <input class="form-check-input me-2" type="checkbox" name="remember_me">
+                <span class="text-sm">Recordar sesión</span>
+              </label>
+              <div>
+                <a class="text-muted text-decoration-underline fs-sm" href="#">¿Olvidaste tu contraseña?</a>
+              </div>
+            </div>
+      
+            <button class="btn btn-primary btn-lg mb-3" type="submit">Iniciar Sesión</button>
+      
+            <button class="btn btn-light btn-lg mb-3 d-flex align-items-center justify-content-center flex-nowrap flex-row border border-secondary" type="button">
+              <span class="flex align-items-center google-login">Iniciar sesión con Google</span>
+            </button>
+          </form>
+        </div>
+      
+        <div class="bg-cover bg-center position-relative d-flex justify-content-center align-items-end p-5 p-md-10 w-100 w-lg-50" style="background-image: url(https://inmobiliaria.kayros.in/wp-content/uploads/2022/11/happy-couple-with-keys-of-new-apartment.jpg)">
+          <div id="quote" class="w-90 h-auto bg-black rounded-md d-flex justify-content-start align-items-center p-4 p-md-6">
+            <span class="text-white fs-4 fs-lg-5 fw-bold">
+              "Hoy es un gran día para comenzar a construir tu futuro. En el tiempo oportuno..."
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      
+</body>
+
+<style>
+    #quote {
+        background: rgba(226, 226, 226, 0.5);
+        background-position: center;
+        backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+	    -moz-backdrop-filter: blur(5px);
+        padding: 30px !important;
+    }
+
+    .google-login::before {
+        content: url('assets/images/g_logo.static.svg');
+        display: block;
+        width: 50px;
+        margin-top: -10px;
+        margin-bottom: -18px;
+    }
+</style>
+
+<script>
+    // Obtenemos el campo de entrada del correo electrónico
+    const emailInput = document.getElementById('email');
+    const emailError = document.querySelector('.error');
+
+    // Agregamos un evento para escuchar los cambios en el campo de entrada del correo electrónico
+    emailInput.addEventListener('input', function() {
+        // Obtenemos el valor actual del campo de entrada del correo electrónico
+        const email = emailInput.value;
+
+        // Creamos una expresión regular para validar si el correo electrónico tiene el dominio "@kayros.in"
+        const emailRegex = /^[^\s@]+@kayros\.in$/;
+
+        // Validamos si el correo electrónico coincide con la expresión regular
+        if (emailRegex.test(email)) {
+            emailInput.setCustomValidity('');
+            emailError.classList.add('hidden');
+        } else {
+            emailInput.setCustomValidity('El correo solo debe ser @kayros.in');
+            emailError.classList.remove('hidden');
+        }
+    });
+</script>
+</html>
+
