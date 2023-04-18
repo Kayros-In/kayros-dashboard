@@ -8,25 +8,25 @@
 
 </head>
 
-<body>
-
+<body>    
     <!-- Begin page -->
     <div id="layout-wrapper">
-
+        
         @@include("partials/menu.html")
-
+        
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
+            
             <div class="page-content">
                 <div class="container-fluid">
-
+                    
                     @@include("partials/page-title.html", {"pagetitle": "Dashboards", "title": "Dashboard Kayros"})
                     <div class="mb-3">
                         <h4 class="fs-16 mb-6">Hola, Javier</h4>
                         <p class="text-muted mb-0">Aqui podrás encontrar tus clientes esperando tu atención.</p>
+                        <div id="root"></div>
                     </div>  
                     
                     <div class="row">
@@ -161,23 +161,18 @@
                                         <table class="table table-nowrap table-centered align-middle">
                                             <thead class="bg-light text-muted">
                                                 <tr>
-                                                    <th scope="col">{{ user.id }}</th>
                                                     <th scope="col">Nombre del cliente</th>
-
+                                                    <th scope="col">Estado</th>
                                                     <th scope="col">Telefono</th>
                                                     <th scope="col">Correo</th>
-                                                    <th scope="col">Estado</th>
                                                     <th scope="col" style="width: 10%;">Due Date</th>
                                                 </tr><!-- end tr -->
                                             </thead><!-- thead -->
 
                                             <tbody>
                                                 <tr>
-                                                    <td class="fw-medium">123454</td>
-                                                    <td class="fw-medium">Jason Mora Mora</td>
 
-                                                    <td class="fw-medium">3003141354</td>
-                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
+                                                    <td class="fw-medium">Jason Mora Mora</td>
 
                                                     <td><div class="btn-group">
                                                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Negociación</button>
@@ -191,14 +186,14 @@
                                                             </div>
                                                         </div><!-- /btn-group -->
                                                     </td>
+                                                    <td class="fw-medium">3003141354</td>
+                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
+
                                                     <td class="text-muted">06 Sep 2021</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="fw-medium">123454</td>
-                                                    <td class="fw-medium">Jason Mora Mora</td>
 
-                                                    <td class="fw-medium">3003141354</td>
-                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
+                                                    <td class="fw-medium">Jason Mora Mora</td>
 
                                                     <td><div class="btn-group">
                                                             <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ganada</button>
@@ -212,14 +207,14 @@
                                                             </div>
                                                         </div><!-- /btn-group -->
                                                     </td>
+                                                    <td class="fw-medium">3003141354</td>
+                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
+
                                                     <td class="text-muted">06 Sep 2021</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="fw-medium">123454</td>
-                                                    <td class="fw-medium">Dalma Blandon</td>
 
-                                                    <td class="fw-medium">3003141354</td>
-                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
+                                                    <td class="fw-medium">Dalma Blandon</td>
                                                     <td><div class="btn-group">
                                                             <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visita</button>
                                                             <div class="dropdown-menu">
@@ -232,15 +227,14 @@
                                                             </div>
                                                         </div><!-- /btn-group -->
                                                     </td>
+
+                                                    <td class="fw-medium">3003141354</td>
+                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
                                                     <td class="text-muted">06 Sep 2021</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td class="fw-medium">123455</td>
                                                     <td class="fw-medium">Jessica Mora</td>
-
-                                                    <td class="fw-medium">3003141355</td>
-                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
                                                     <td><div class="btn-group">
                                                             <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Negociación</button>
                                                             <div class="dropdown-menu">
@@ -253,15 +247,14 @@
                                                             </div>
                                                         </div><!-- /btn-group -->
                                                     </td>
+
+                                                    <td class="fw-medium">3003141355</td>
+                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
                                                     <td class="text-muted">06 Sep 2021</td>
                                                 </tr>
                                                 
                                                 <tr>
-                                                    <td class="fw-medium">123456</td>
                                                     <td class="fw-medium">Denisses Garzon</td>
-
-                                                    <td class="fw-medium">3003141356</td>
-                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
                                                     <td><div class="btn-group">
                                                             <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perdida</button>
                                                             <div class="dropdown-menu">
@@ -274,6 +267,9 @@
                                                             </div>
                                                         </div><!-- /btn-group -->
                                                     </td>
+
+                                                    <td class="fw-medium">3003141356</td>
+                                                    <td class="fw-medium">ing.javierllorente@gmail.com</td>
                                                     <td class="text-muted">06 Sep 2021</td>
                                                 </tr>
                                                
@@ -551,6 +547,7 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    @@include("partials/body-jsx.html")
 </body>
 
 </html>

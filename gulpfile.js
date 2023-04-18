@@ -4,6 +4,9 @@ const cached = require('gulp-cached');
 const del = require('del');
 const fileinclude = require('gulp-file-include');
 const gulp = require('gulp');
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
 const gulpif = require('gulp-if');
 const npmdist = require('gulp-npm-dist');
 const replace = require('gulp-replace');
@@ -15,6 +18,7 @@ const autoprefixer = require("gulp-autoprefixer");
 const sourcemaps = require("gulp-sourcemaps");
 const cleanCSS = require('gulp-clean-css');
 const rtlcss = require('gulp-rtlcss');
+
 
 const fs = require('fs'); // Read a file
 var envConfig = JSON.parse(fs.readFileSync('theme-config.json', 'utf8'));
@@ -32,6 +36,42 @@ gulp.task("css", function () {
     .pipe(postcss([tailwindcss("/tailwind.config.js")]))
     .pipe(gulp.dest("/dist/kayros"));
 });
+
+// gulp.task('browser-sync', function () {
+//     browsersync.init({
+//         server: {
+//             baseDir: 'dist',
+//             routes: {
+//                 '/node_modules': 'node_modules',
+//             },
+//             middleware: function (req, res, next) {
+//                 res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+//                 next();
+//             },
+//         },
+//     });
+// });
+
+// gulp.task('compile-jsx', function () {
+//     return gulp
+//       .src('src/html/kayros/*.jsx') // Cambia esta ruta según la ubicación de tus archivos JSX
+//       .pipe(
+//         babel({
+//           presets: ['@babel/preset-env', '@babel/preset-react'],
+//         })
+//       )
+//       .pipe(gulp.dest('dist')); // Cambia esta ruta según dónde quieras que se guarden los archivos compilados
+//   });
+
+
+    gulp.task('jsx', function() {
+    return browserify({ entries: 'src/html/kayros/index.jsx', extensions: ['.jsx'], debug: true })
+        .transform(babelify, { presets: ['@babel/preset-react'] })
+        .bundle()
+        .pipe(source('index.js'))
+        .pipe(gulp.dest('dist/kayros'));
+    });
+
 
 const paths = {
     base: {
@@ -135,6 +175,7 @@ gulp.task('watch', async function () {
     gulp.watch(paths.src.icon.files, gulp.series('icon', 'browsersyncReload'));
     gulp.watch(paths.src.custom.files, gulp.series('custom', 'browsersyncReload'));
     gulp.watch([paths.src.js.dir], gulp.series('js', 'browsersyncReload'));
+    gulp.watch([paths.src.js.dir, '**/*.jsx'], gulp.series('js', 'browsersyncReload'));
     gulp.watch([paths.src.js.pages], gulp.series('jsPages', 'browsersyncReload'));
     gulp.watch([paths.src.html.files, paths.src.partials.files], gulp.series('html', 'browsersyncReload'));
 });
@@ -712,4 +753,4 @@ gulp.task('html', function () {
 
 gulp.task('build', gulp.series(gulp.parallel('clean:dist', 'copy:all', 'copy:libs', 'html', 'bootstrap', 'scss', 'js', 'jsPages', 'icon','custom'), gulp.parallel('scss', 'html')));
 
-gulp.task('default', gulp.series(gulp.parallel('clean:dist', 'copy:all', 'copy:libs', 'html', 'bootstrap', 'scss', 'js', 'jsPages', 'icon','custom'), gulp.parallel('browsersync', 'watch')));
+gulp.task('default', gulp.series(gulp.parallel('clean:dist', 'copy:all', 'copy:libs', 'html', 'bootstrap', 'scss', 'js', 'jsPages', 'jsx', 'icon','custom'), gulp.parallel('browsersync', 'watch')));
