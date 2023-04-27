@@ -6,6 +6,7 @@ const fileinclude = require('gulp-file-include');
 const gulp = require('gulp');
 const browserify = require('browserify');
 const babelify = require('babelify');
+const babel = require('gulp-babel');
 const source = require('vinyl-source-stream');
 const gulpif = require('gulp-if');
 const npmdist = require('gulp-npm-dist');
@@ -64,13 +65,21 @@ gulp.task("css", function () {
 //   });
 
 
-    gulp.task('jsx', function() {
+gulp.task('jsx', function () {
     return browserify({ entries: 'src/html/kayros/index.jsx', extensions: ['.jsx'], debug: true })
-        .transform(babelify, { presets: ['@babel/preset-react'] })
-        .bundle()
-        .pipe(source('index.js'))
-        .pipe(gulp.dest('dist/kayros'));
-    });
+      .transform(babelify, {
+        presets: [
+          '@babel/preset-react',
+          '@babel/preset-env',
+        ],
+      })
+      .bundle()
+      .pipe(source('index.js'))
+      .pipe(gulp.dest('dist/kayros'));
+  });
+  
+  
+  
 
 
 const paths = {

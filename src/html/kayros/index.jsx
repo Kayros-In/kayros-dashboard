@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+import DealsTable from './deals.jsx';
 
 const App = () => {
   
@@ -9,7 +10,7 @@ const App = () => {
   return (
     <div>
       <span>Hello React!!!!!</span>
-      <button onClick={handleClick}>Haz clic aquí</button>
+      <DealsTable />
     </div>
   );
 };
